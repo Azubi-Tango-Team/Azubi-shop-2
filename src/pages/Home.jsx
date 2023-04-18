@@ -1,8 +1,16 @@
-import React from "react"
+import React,{useState} from "react"
+import CardList from '../components/CardList'
+import SearchBar from '../components/SearchBar'
+import {  CartState } from '../context/ContextProvider';
 
 function Home(){
+    const {state}=CartState()
+    console.log(state)
     return(
-        <div>home</div>
+       <div className="container">
+        <SearchBar Products={state.Products}/>
+        <CardList products={state.products}/>
+       </div>
     )
 }
 

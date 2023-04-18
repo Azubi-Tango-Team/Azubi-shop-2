@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar } from "./components/Navbar";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Register from './pages/Register';
+import Navbar from "./components/Navbar";
 import ProductDetails from './pages/ProductDetails';
 import Login from './pages/Login';
 
