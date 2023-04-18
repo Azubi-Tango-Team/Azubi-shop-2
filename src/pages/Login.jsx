@@ -31,35 +31,33 @@ function Login() {
   }
 
   return (
-    <div className="form-container">
-      <h1>sign in</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-input">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+    <div className='form-container'>
+    <h1>Sign in</h1>
+    <form onSubmit={handleSubmit}>
+    <div className='form-input'>
+        <label htmlFor='email'>Email</label>
+        <input type='email'
+         id='email' 
+         name='email' 
+         value={email}
+          onChange={(e)=>setEmail(e.target.value)} />
+      </div>
+      <div className='form-input'>
+        <label htmlFor='password'>Password</label>
+        <input type='password' 
+        id='password'
+         name='password'
+         value={password}
+          onChange={(e)=>setPassword(e.target.value)}
           />
-        </div>
-        <div className="form-input">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className='form-input'>
-          <button className='btn-btn-block'>Submit</button>
-        </div>
-      </form>
-    </div>
-  );
+      </div>
+      <div className='form-input'>
+       <button className='btn btn-block'>Submit</button>
+      </div>
+  </form>
+  </div>
+
+  )
 }
 
-export default Login;
+export default Login

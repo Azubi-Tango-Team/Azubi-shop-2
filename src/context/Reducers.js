@@ -8,20 +8,20 @@ export const cartReducer = (state, action) => {
     case 'REMOVE_FROM_CART':
       return {
         ...state,
-        cart: state.cart.filter((c) => c.id !== action.payload.id),
+        cart: state.cart.filter(c => c.id !== action.payload.id),
       };
     case 'INCREMENT_CART_QTY':
       return {
         ...state,
-        cart: state.cart.filter((c) =>
-          c.id === action.payload.id ? c.qty + action.payload.val : c.qty
+        cart: state.cart.map((c) =>
+          c.id === action.payload.id ? c.qty + action.payload.val : c
         ),
       };
     case 'DECREMENT_CART_QTY':
       return {
         ...state,
-        cart: state.cart.filter((c) =>
-          c.id === action.payload.id ? c.qty - action.payload : c.qty
+        cart: state.cart.map((c) =>
+          c.id === action.payload.id ? c.qty - action.payload.val : c
         ),
       };
     case 'SEARCH_PRODUCT':

@@ -4,9 +4,9 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 const ButtonCart = ({ FaIcon, onHandleClick }) => {
   return (
     <button
-      className="brn-cart"
+      className="btn-cart"
       style={{
-        boarder: "none",
+        border: "none",
         background: "#ffff",
         padding: "5px",
         cursor: "pointer",
@@ -47,7 +47,9 @@ function CartItems({ item, dispatch }) {
   function handleDelete() {
     dispatch({
       type: "REMOVE_FROM_CART",
-      payload: `${item.id}`,
+      payload: {
+        id: item.id,
+      },
     });
   }
   return (

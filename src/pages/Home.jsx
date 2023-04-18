@@ -8,7 +8,7 @@ function Home(){
     console.log(state)
     return(
        <div className="container">
-        <SearchBar Products={state.Products}/>
+        <SearchBar Products={state.products}/>
         <CardList products={state.products}/>
        </div>
     )
