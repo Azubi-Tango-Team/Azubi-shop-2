@@ -26,7 +26,7 @@ function CartItems({ item, dispatch }) {
     dispatch({
       type: "INCREMENT_CART_QTY",
       payload: {
-        id: "${item.id}",
+        id: `${item.id}`,
         val: 1,
       },
     });
@@ -37,7 +37,7 @@ function CartItems({ item, dispatch }) {
     dispatch({
       type: "DECREMENT_CART_QTY",
       payload: {
-        id: "${item.id}",
+        id: `${item.id}`,
       },
     });
     console.log(item);
@@ -47,7 +47,7 @@ function CartItems({ item, dispatch }) {
   function handleDelete() {
     dispatch({
       type: "REMOVE_FROM_CART",
-      payload: "${item.id}",
+      payload: `${item.id}`,
     });
   }
   return (

@@ -1,4 +1,4 @@
-import React,{useState} from "react"
+import React,{useState} from 'react'
 import CardList from '../components/CardList'
 import SearchBar from '../components/SearchBar'
 import {  CartState } from '../context/ContextProvider';

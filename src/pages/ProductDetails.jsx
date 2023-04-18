@@ -1,9 +1,55 @@
-import React, { Component } from 'react'
+import React,{useState,useEffect} from 'react'
+import { useParams } from 'react-router-dom'
+import Button from '../components/Button'
+import { CartState } from '../context/ContextProvider'
 
-export default class ProductDetails extends Component {
-  render() {
-    return (
-      <div>ProductDetails</div>
-    )
+function ProductDetails() {
+  const {state:{products,cart},dispatch}=CartState()
+  const {id} = useParams()
+  const product = products.find(item=>item.id ===id)
+  const cartItem = cart?.some(i=>i.id === `${product.id}`)
+  console.log(cart)
+  console.log(product.id)
+
+  //add to cart functiom
+  function handleAddCart(){
+    dispatch({
+      type:'ADD_TO_CART',
+      payload:product
+    })
   }
+  //function remove from cart
+  function handleRemoveCart(){
+    dispatch({
+      type:'REMOVE_FROM_CART',
+      payload:`${product.id}`
+    })
+  }
+
+
+  return (
+   <div className='product-container'>
+    <div className='product-image'>
+      <img src={product.imgUrl} alt='cap'/>
+    </div>
+    <div className='product-content'>
+      <h1>{product.title}</h1>
+      <p>{product.body}</p>
+      <span>$ {product.price}</span>
+
+      {
+        cart.some(p=>p.id === `${id}`)?(
+          <button className='btn btn-danger'
+          onClick={handleRemoveCart}>Remove from cart</button>
+        ):(
+          <button className='btn'
+          onClick={handleAddCart}>Add to Cart</button>
+
+        )
+      }
+    </div>
+   </div>
+  )
 }
+
+export default ProductDetails
