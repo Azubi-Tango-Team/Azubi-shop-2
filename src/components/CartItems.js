@@ -1,81 +1,66 @@
-import React from "react";
-import { FaMinus, FaPlus } from "react-icons/fa";
+import React from 'react';
+import { FaMinus, FaPlus } from 'react-icons/fa';
 
-const ButtonCart = ({ FaIcon, onHandleClick }) => {
+// Define the 'ButtonCart' component which displays a button with a given icon and handles a click event
+const ButtonCart = ({ faIcon, onHandleClick }) => {
   return (
     <button
-      className="btn-cart"
+      className='btn-cart'
       style={{
-        border: "none",
-        background: "#ffff",
-        padding: "5px",
-        cursor: "pointer",
+        border: 'none',
+        background: '#ffff',
+        padding: '5px',
+        cursor: 'pointer'
       }}
       onClick={onHandleClick}
     >
-      {FaIcon}
+      {faIcon}
     </button>
   );
 };
+// Define the 'CartItems' component which displays details of a single item in the shopping cart
+const CartItems = ({ item, dispatch }) => {
+  const totalItem = item.qty * item.price; // Calculate the total price of the item
 
-function CartItems({ item, dispatch }) {
-  let totalItem = item.qty * item.price;
-  console.log(item);
-  // increase quantity
-  function handleQtyIncrement() {
+  // Define the 'handleQtyIcreament' function to increase the quantity of the item in the cart
+  const handleQtyIcreament = () => {
     dispatch({
-      type: "INCREMENT_CART_QTY",
+      type: 'INCREMENT_CART_QTY',
       payload: {
         id: `${item.id}`,
-        val: 1,
-      },
+        val: 1
+      }
     });
-    console.log(item);
-  }
-  //decrease quantity
-  function handleQtyDecrement() {
-    dispatch({
-      type: "DECREMENT_CART_QTY",
-      payload: {
-        id: `${item.id}`,
-      },
-    });
-    console.log(item);
-  }
+  };
 
-  //Delete cart
-  function handleDelete() {
+  // Define the 'handleDelete' function to remove the item from the cart
+  const handleDelete = () => {
     dispatch({
-      type: "REMOVE_FROM_CART",
-      payload: {
-        id: item.id,
-      },
+      type: 'REMOVE_FROM_CART',
+      payload: `${item.id}`
     });
-  }
+  };
+// Render the details of the item in the cart
   return (
     <tr>
-      <td
-        style={{
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "center",
-        }}
-      >
-        <img src={item.imgUrl} alt={item.title} width="40" />
+      <td style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+        <img src={item.imgUrl} alt={item.title} width='40' height='40' />
         <span>{item.title}</span>
       </td>
-      <td>
-        ${item.price}
-      </td>
+      <td>$ {item.price}</td>
       <td className='add-btn'>
-        <ButtonCart faIcon={<FaMinus className='fa'/>} onHandleClick={handleQtyDecrement}/>
-        <ButtonCart faIcon={item.qty}/>
-        <ButtonCart faIcon={<FaPlus className='fa'/>} onHandleClick={handleQtyIncrement}/>
+        <ButtonCart faIcon={<FaMinus className='fa' />} />
+        <ButtonCart faIcon={item.qty} />
+        <ButtonCart faIcon={<FaPlus className='fa' />} onHandleClick={handleQtyIcreament} />
       </td>
-      <td>${totalItem}</td>
-      <td><button onClick={handleDelete} className="btn btn-danger">Delete</button></td>
+      <td>$ {totalItem}</td>
+      <td>
+        <button onClick={handleDelete} className='btn btn-danger'>
+          Delete
+        </button>
+      </td>
     </tr>
-  )
-}
+  );
+};
 
 export default CartItems;

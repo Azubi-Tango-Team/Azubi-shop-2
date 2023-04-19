@@ -13,21 +13,21 @@ export const cartReducer = (state, action) => {
     case 'INCREMENT_CART_QTY':
       return {
         ...state,
-        cart: state.cart.map((c) =>
-          c.id === action.payload.id ? c.qty + action.payload.val : c
-        ),
+        cart: state.cart.map(c =>
+          c.id === action.payload.id ?  { ...c, qty: c.qty + action.payload.val } : c
+          ),
       };
     case 'DECREMENT_CART_QTY':
       return {
         ...state,
-        cart: state.cart.map((c) =>
-          c.id === action.payload.id ? c.qty - action.payload.val : c
+        cart: state.cart.map(c =>
+          c.id === action.payload.id ? { ...c, qty: c.qty - action.payload } : c
         ),
       };
     case 'SEARCH_PRODUCT':
       return {
         ...state,
-        products: state.products.filter((c) =>
+        products: state.products.filter(c =>
           c.title.toLowerCase().includes(action.payload)
         ),
       };
@@ -35,3 +35,4 @@ export const cartReducer = (state, action) => {
         return state;
   }
 };
+export default cartReducer;
